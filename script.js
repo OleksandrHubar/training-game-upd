@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pages = {
     start: document.getElementById('startPage'),
     registration: document.getElementById('registrationPage'),
-    trainingType: document.getElementById('trainingTypePage'),
+    trainingSelection: document.getElementById('trainingSelectionPage'),
     target: document.getElementById('targetPage'),
     game: document.getElementById('gamePage'),
   };
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nextToTraining: document.getElementById('nextToTrainingType'),
     backToRegistration: document.getElementById('backToRegistration'),
     nextToTarget: document.getElementById('nextToTarget'),
-    backToTrainingType: document.getElementById('backToTrainingType'),
+    backToTrainingSelection: document.getElementById('backToTrainingSelection'),
     startGame: document.getElementById('startGameButton'),
     backToTarget: document.getElementById('backToTarget'),
   };
@@ -25,11 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const playerMode = document.getElementById('playerMode');
   const playerCount = document.getElementById('playerCount');
   const playerNames = document.getElementById('playerNames');
-  const trainingType = document.getElementById('trainingType');
   const individualTargetCheckbox = document.getElementById('individualTarget');
   const commonTargetInput = document.getElementById('commonTarget');
   const individualTargetsContainer = document.getElementById('individualTargets');
-
 
   // 🧩 База вправ та комплексів
   const exercises = [
@@ -53,6 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let selectedExercises = [];
+  const exerciseList = document.getElementById('exerciseList');
+  const complexList = document.getElementById('complexList');
+  
   // 🟡 Вкладки для вибору
   const manualTab = document.getElementById('manualTab');
   const complexTab = document.getElementById('complexTab');
@@ -61,22 +62,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🟡 Виводимо вправи
   function renderExercises() {
-    const exerciseList = document.getElementById('exerciseList');
     exerciseList.innerHTML = exercises.map(exercise => `
-      <div class="exercise-item" data-id="${exercise.id}" onclick="toggleExercise(${exercise.id})">
+      <div class="exercise-item" data-id="${exercise.id}">
         ${exercise.name} - ${exercise.reps} reps (${exercise.calories} cal)
       </div>
     `).join('');
+    document.querySelectorAll('.exercise-item').forEach(item => {
+      item.addEventListener('click', () => toggleExercise(parseInt(item.dataset.id, 10)));
+    });
   }
 
   // 🟡 Виводимо комплекси
   function renderComplexes() {
-    const complexList = document.getElementById('complexList');
     complexList.innerHTML = complexes.map(complex => `
-      <div class="complex-item" data-id="${complex.id}" onclick="selectComplex('${complex.id}')">
+      <div class="complex-item" data-id="${complex.id}">
         ${complex.name}
       </div>
     `).join('');
+    document.querySelectorAll('.complex-item').forEach(item => {
+      item.addEventListener('click', () => selectComplex(item.dataset.id));
+    });
   }
 
   // 🟡 Вибір/зняття вибору вправ
@@ -108,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   
-
   // 🟡 Підсвічування обраного комплексу
   function updateComplexHighlight(selectedId) {
     document.querySelectorAll('.complex-item').forEach(item => {
@@ -134,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // 📊 Дані гри
   let gameData = {
     players: [],
-    trainingType: '',
     targets: {},
   };
 
@@ -193,7 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
   buttons.start.addEventListener('click', () => showPage(pages.registration));
   buttons.nextToTraining.addEventListener('click', () => {
     collectPlayers();
-    showPage(pages.trainingType);
+    showPage(pages.trainingSelection);
   });
 
   buttons.backToStart = document.getElementById('backToStart');
@@ -204,10 +207,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttons.backToRegistration.addEventListener('click', () => goBack());
   buttons.nextToTarget.addEventListener('click', () => {
-    gameData.trainingType = trainingType.value;
     showPage(pages.target);
   });
-  buttons.backToTrainingType.addEventListener('click', () => goBack());
+  buttons.backToTrainingSelection.addEventListener('click', () => goBack());
   buttons.startGame.addEventListener('click', () => {
     collectTargets();
     showPage(pages.game);
