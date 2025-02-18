@@ -1,0 +1,173 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #1c1f26;
+  color: #e4e4eb;
+}
+
+/* Стилі для сторінок */
+.page {
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #2c2f38;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  transition: opacity 0.5s;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Заголовки */
+h1, h2 {
+  font-size: 24px;
+  color: #b0b0c0;
+}
+
+/* Кнопки */
+button {
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+  background-color: #5e5c8a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #4a4975;
+  transform: translateY(-2px);
+}
+
+.back-button {
+  padding: 8px 12px;
+  margin: 10px 5px;
+  font-size: 14px;
+  background-color: #444;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #333;
+}
+
+/* Стиль для кнопки Back to Start */
+#backToStart {
+  background-color: #6c757d; /* Сірий колір */
+  color: white;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+#backToStart:hover {
+  background-color: #5a6268;
+}
+
+/* Поля введення */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #444a55;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #2c2f38;
+  color: #e4e4eb;
+}
+
+input::placeholder {
+  color: #b0b0c0;
+}
+
+/* Для випадаючих списків */
+select {
+  cursor: pointer;
+}
+
+/* Адаптація для мобільних пристроїв */
+@media (max-width: 768px) {
+  .page {
+    width: 100%;
+    padding: 15px;
+    border-radius: 0;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+  h1, h2 {
+    font-size: 20px;
+  }
+}
+
+
+/* Вкладки */
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  margin: 0 5px;
+  background-color: #5e5c8a;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab.active {
+  background-color: #9370db;
+  font-weight: bold;
+}
+
+/* Сітка для вправ та комплексів */
+.list-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.exercise-item, .complex-item {
+  padding: 12px;
+  border: 2px solid #444a55;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #2c2f38;
+  color: #e4e4eb;
+  transition: 0.3s;
+}
+
+.exercise-item.selected, .complex-item.selected {
+  background-color: #5cb85c; /* Підсвічування при виборі */
+  color: white;
+  font-weight: bold;
+}
+
+.exercise-item:hover, .complex-item:hover {
+  background-color: #4a4975;
+}

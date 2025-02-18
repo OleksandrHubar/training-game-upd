@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Training Game</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <!-- Сторінка старту -->
+  <div id="startPage" class="page">
+    <h1>Welcome to Sports Training Game</h1>
+    <button id="startButton">Start</button>
+  </div>
+
+  <!-- Сторінка реєстрації учасників -->
+  <div id="registrationPage" class="page hidden">
+    <h2>Register Players</h2>
+    <label for="playerMode">Choose mode:</label>
+    <select id="playerMode">
+      <option value="single">One player</option>
+      <option value="multiple">Multiple players</option>
+    </select>
+    
+    <div id="singlePlayerInput" class="hidden">
+      <input type="text" id="singlePlayerName" placeholder="Enter your name">
+    </div>
+    
+    <div id="multiplePlayersInput" class="hidden">
+      <label for="playerCount">Number of players:</label>
+      <input type="number" id="playerCount" min="2" placeholder="Enter number of players">
+      <div id="playerNames"></div>
+    </div>
+    
+    <button id="nextToTrainingType">Next</button>
+    <button id="backToStart" class="back-button">Back to Start</button>
+  </div>
+
+  <!-- 📍 4. Сторінка вибору вправ -->
+  <div id="trainingSelectionPage" class="page hidden">
+    <h2>Select Your Training</h2>
+
+    <!-- Вкладки -->
+    <div class="tabs">
+      <button id="manualTab" class="tab active">Manual Selection</button>
+      <button id="complexTab" class="tab">Ready-made Complexes</button>
+    </div>
+
+    <!-- Блок для ручного вибору вправ -->
+    <div id="manualSelection" class="selection-block">
+      <h3>Choose Exercises</h3>
+      <div id="exerciseList" class="list-grid"></div>
+    </div>
+
+    <!-- Блок для вибору комплексів -->
+    <div id="complexSelection" class="selection-block hidden">
+      <h3>Choose Complex</h3>
+      <div id="complexList" class="list-grid"></div>
+    </div>
+
+    <!-- Кнопки навігації -->
+    <button id="nextToTarget">Next</button>
+    <button class="back-button" onclick="goBack()">Back</button>
+  </div>
+
+  <!-- Сторінка встановлення цільових калорій -->
+  <div id="targetPage" class="page hidden">
+    <h2>Set Calorie Goal</h2>
+    <label>
+      <input type="checkbox" id="individualTarget"> Set individual targets for each player
+    </label>
+    
+    <div id="commonTargetInput">
+      <input type="number" id="commonTarget" placeholder="Enter target calories for all">
+    </div>
+    
+    <div id="individualTargets" class="hidden"></div>
+    
+    <button id="startGameButton">Start Game</button>
+    <button id="backToTrainingType" class="back-button">Back</button>
+  </div>
+
+  <!-- Сторінка гри (поки що пуста, буде доповнена) -->
+  <div id="gamePage" class="page hidden">
+    <h2>Game in Progress</h2>
+    <p>Good luck!</p>
+
+    <button id="backToTarget" class="back-button">Back</button>
+  </div>
+
+</body>
+</html>
